@@ -2,70 +2,131 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>HASAN OTOMOTİV - EN UCUZ ARABALAR BURDA</title>
+    <title>Hasan Otomotiv - İkinci Elin Adresi</title>
     <style>
         body {
-            background-color: yellow; /* Göz alan sarı */
-            color: red; /* Okunmayan kırmızı yazılar */
-            font-family: "Comic Sans MS", cursive, sans-serif; /* Tasarımın katili */
+            font-family: "Times New Roman", Times, serif; /* Eski tip varsayılan font */
+            background-color: #f0f0f0; /* Sıkıcı gri arka plan */
+            color: #000;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #cc0000; /* Koyu kırmızı başlık */
             text-align: center;
-        }
-        marquee {
-            background-color: blue;
-            color: white;
-            font-size: 24px;
-        }
-        .container {
-            width: 100%;
-            border: 5px dashed green;
-        }
-        .car-card {
-            background-color: silver;
-            margin: 20px;
-            padding: 10px;
-            display: inline-block;
-            border: 10px solid black;
-        }
-        .price {
-            font-size: 30px;
-            font-weight: bold;
             text-decoration: underline;
         }
-        button {
-            background-color: lime;
-            font-size: 20px;
-            cursor: pointer;
+        .menu {
+            background-color: #ddd;
+            padding: 10px;
+            border-bottom: 2px solid #999;
+            margin-bottom: 20px;
+        }
+        .menu a {
+            margin-right: 15px;
+            color: blue;
+            font-weight: bold;
+        }
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 3px solid #666;
+        }
+        td, th {
+            border: 1px solid #999;
+            padding: 15px;
+            vertical-align: top;
+        }
+        th {
+            background-color: #ccc;
+        }
+        .car-img {
+            width: 250px;
+            height: auto;
+            border: 2px solid red; /* Gereksiz kırmızı çerçeve */
+        }
+        .price {
+            font-size: 24px;
+            color: darkgreen;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+        .blink {
+            animation: blinker 1s linear infinite;
+            color: red;
+            font-weight: bold;
+        }
+        @keyframes blinker {
+          50% { opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <marquee>!!! ACELE ET BU FİYATLAR KAÇMAZ !!! HASAN OTOMOTİV GÜVENCESİYLE !!!</marquee>
-
-    <h1>BİZE GELMEDEN ARABA ALMA !!!</h1>
+    <h1>HASAN OTOMOTİV'E HOŞGELDİNİZ</h1>
     
-    <div class="container">
-        <p>Sitemiz yapım aşamasındadır ama arabalar gerçektir.</p>
-        
-        <div class="car-card">
-            <h2>DOĞAN SLX - BOYASIZ</h2>
-            <img src="https://via.placeholder.com/200x150?text=Kotu+Araba+Resmi+1" alt="Araba">
-            <p>Çok temiz, sadece 500 bin kmde. Gel gör.</p>
-            <div class="price">1.000.000 TL</div>
-            <button onclick="alert('Henuz calismiyor')">TIKLA ARA</button>
-        </div>
-
-        <div class="car-card">
-            <h2>ESKİ BİR ARABA</h2>
-            <img src="https://via.placeholder.com/200x150?text=Kotu+Araba+Resmi+2" alt="Araba">
-            <p>Lastikler yeni gibi, muayene var.</p>
-            <div class="price">Fiyat için ara</div>
-            <button>BANA TIKLA</button>
-        </div>
+    <div class="menu">
+        <a href="#">Ana Sayfa</a> |
+        <a href="#">Araçlarımız</a> |
+        <a href="#">Hakkımızda</a> |
+        <a href="#">İletişim (Tel: 0555...)</a>
     </div>
 
-    <p align="left">Ziyaretçi Sayısı: 0000045</p>
-    <p>Copyright 2002 - Hasanın Yeri</p>
+    <p style="text-align: center; font-size: 18px;">
+        <span class="blink">DİKKAT!</span> Bu haftaya özel şok fiyatlar. Kaçıran üzülür!
+    </p>
+
+    <table>
+        <tr>
+            <th>Araç Resmi</th>
+            <th>Araç Bilgileri</th>
+        </tr>
+        <tr>
+            <td>
+                <img src="https://i.imgur.com/8Q5gq1S.jpg" alt="Satılık Tofaş" class="car-img">
+            </td>
+            <td>
+                <h3>Tofaş Doğan SLX (Efsane Kasa)</h3>
+                <ul>
+                    <li>Yıl: 1998</li>
+                    <li>Renk: Bordo</li>
+                    <li>Durumu: Keyfe keder boyalı, motor canavar.</li>
+                    <li>Not: Tesisat fiyata dahil değildir!</li>
+                </ul>
+                <div class="price">Fiyat: 350.000 TL (Pazarlık Sünnettir)</div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                 <img src="https://i.imgur.com/0a8zXyM.jpg" alt="Satılık Renault Toros" class="car-img">
+            </td>
+            <td>
+                <h3>Renault Toros (Dağ Keçisi)</h3>
+                <ul>
+                    <li>Yıl: 1995</li>
+                    <li>Renk: Beyaz</li>
+                    <li>Durumu: Yürürü on numara, kaporta masrafsız.</li>
+                    <li>Not: Tüpü işli, muayene yeni bitti.</li>
+                </ul>
+                <div class="price">Fiyat: 280.000 TL (Acil Satılık)</div>
+            </td>
+        </tr>
+    </table>
+
+    <div class="footer">
+        <p>© 2011 Hasan Otomotiv Ltd. Şti. - Tüm Hakları Saklıdır.</p>
+        <p>Web Tasarım: Yeğenim Bilişim</p>
+    </div>
 
 </body>
 </html>
