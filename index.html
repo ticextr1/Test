@@ -2,131 +2,158 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>Hasan Otomotiv - İkinci Elin Adresi</title>
+    <title>HASAN OTOMOTİV - ARABANIN ADRESİ</title>
     <style>
         body {
-            font-family: "Times New Roman", Times, serif; /* Eski tip varsayılan font */
-            background-color: #f0f0f0; /* Sıkıcı gri arka plan */
-            color: #000;
+            font-family: "Arial", sans-serif;
+            background-color: #e6e6e6; /* Eski tip gri arka plan */
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
-        h1 {
-            color: #cc0000; /* Koyu kırmızı başlık */
+        header {
+            background-color: #003366; /* Koyu lacivert, eski kurumsal renk */
+            color: white;
+            padding: 30px;
             text-align: center;
-            text-decoration: underline;
+            border-bottom: 5px solid #ff0000;
         }
-        .menu {
-            background-color: #ddd;
+        .nav {
+            background-color: #333;
+            color: white;
             padding: 10px;
-            border-bottom: 2px solid #999;
+            text-align: center;
+        }
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+        /* İlanları büyüttüğümüz ana konteyner */
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #ccc;
+        }
+        .ilan-karti {
+            border: 4px double #333; /* Eski usul çerçeve */
+            margin-bottom: 40px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .ilan-baslik {
+            background-color: #ffff00; /* Dikkat çekici sarı başlık */
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 28px;
+            font-weight: bold;
+            color: #ff0000;
             margin-bottom: 20px;
         }
-        .menu a {
-            margin-right: 15px;
-            color: blue;
-            font-weight: bold;
-        }
-        table {
-            width: 80%;
-            margin: auto;
-            border-collapse: collapse;
-            background-color: #fff;
-            border: 3px solid #666;
-        }
-        td, th {
-            border: 1px solid #999;
-            padding: 15px;
-            vertical-align: top;
-        }
-        th {
-            background-color: #ccc;
-        }
-        .car-img {
-            width: 250px;
+        /* Resimleri burada devasa yapıyoruz */
+        .ilan-resim {
+            width: 100%;
+            max-width: 700px; /* Baya büyük görünecek */
             height: auto;
-            border: 2px solid red; /* Gereksiz kırmızı çerçeve */
+            border: 5px solid #000;
+            margin-bottom: 20px;
         }
-        .price {
-            font-size: 24px;
-            color: darkgreen;
-            font-weight: bold;
-            margin-top: 10px;
-        }
-        .footer {
-            margin-top: 30px;
-            text-align: center;
-            font-size: 12px;
-            color: #666;
-            border-top: 1px solid #ccc;
+        .ilan-detay {
+            width: 100%;
+            font-size: 20px;
+            line-height: 1.6;
+            text-align: left;
+            border-top: 1px dashed #000;
             padding-top: 10px;
         }
-        .blink {
-            animation: blinker 1s linear infinite;
-            color: red;
+        .fiyat {
+            font-size: 40px;
+            color: #cc0000;
             font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+            padding: 10px;
         }
-        @keyframes blinker {
-          50% { opacity: 0; }
+        .iletisim-btn {
+            background-color: #008000;
+            color: white;
+            padding: 15px 40px;
+            font-size: 22px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
         }
     </style>
 </head>
 <body>
 
-    <h1>HASAN OTOMOTİV'E HOŞGELDİNİZ</h1>
-    
-    <div class="menu">
-        <a href="#">Ana Sayfa</a> |
-        <a href="#">Araçlarımız</a> |
-        <a href="#">Hakkımızda</a> |
-        <a href="#">İletişim (Tel: 0555...)</a>
+<header>
+    <h1>H A S A N &nbsp; O T O M O T İ V</h1>
+    <p>Dürüstlüğün Tek Adresi - 20 Yıllık Tecrübe</p>
+</header>
+
+<div class="nav">
+    <a href="#">ANASAYFA</a> | <a href="#">ARAÇLARIMIZ</a> | <a href="#">EKSPERTİZ</a> | <a href="#">İLETİŞİM</a>
+</div>
+
+<div class="container">
+    <h2 style="text-align: center;">--- GÜNCEL İLANLARIMIZ ---</h2>
+
+    <div class="ilan-karti">
+        <div class="ilan-baslik">ACİL SATILIK - DOĞAN SLX - EMSALSİZ!</div>
+        <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1000&auto=format&fit=crop" class="ilan-resim" alt="Araba">
+        
+        <div class="ilan-detay">
+            <strong>Araç Özellikleri:</strong>
+            <ul>
+                <li><strong>Model:</strong> 1998 Tofaş Doğan SLX</li>
+                <li><strong>Kilometre:</strong> 185.000 (Orijinal değil ama motor yeni)</li>
+                <li><strong>Boya Durumu:</strong> Bel altı temizlik boyası var, değişen sorma.</li>
+                <li><strong>Ekstralar:</strong> CMS 40 Jant, Pioneer Tesisat, Deli Mavi Xenon.</li>
+            </ul>
+        </div>
+        
+        <div class="fiyat">385.000 TL</div>
+        <a href="tel:05550000000" class="iletisim-btn">HASAN ABİYİ ARA</a>
     </div>
 
-    <p style="text-align: center; font-size: 18px;">
-        <span class="blink">DİKKAT!</span> Bu haftaya özel şok fiyatlar. Kaçıran üzülür!
-    </p>
-
-    <table>
-        <tr>
-            <th>Araç Resmi</th>
-            <th>Araç Bilgileri</th>
-        </tr>
-        <tr>
-            <td>
-                <img src="https://i.imgur.com/8Q5gq1S.jpg" alt="Satılık Tofaş" class="car-img">
-            </td>
-            <td>
-                <h3>Tofaş Doğan SLX (Efsane Kasa)</h3>
-                <ul>
-                    <li>Yıl: 1998</li>
-                    <li>Renk: Bordo</li>
-                    <li>Durumu: Keyfe keder boyalı, motor canavar.</li>
-                    <li>Not: Tesisat fiyata dahil değildir!</li>
-                </ul>
-                <div class="price">Fiyat: 350.000 TL (Pazarlık Sünnettir)</div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                 <img src="https://i.imgur.com/0a8zXyM.jpg" alt="Satılık Renault Toros" class="car-img">
-            </td>
-            <td>
-                <h3>Renault Toros (Dağ Keçisi)</h3>
-                <ul>
-                    <li>Yıl: 1995</li>
-                    <li>Renk: Beyaz</li>
-                    <li>Durumu: Yürürü on numara, kaporta masrafsız.</li>
-                    <li>Not: Tüpü işli, muayene yeni bitti.</li>
-                </ul>
-                <div class="price">Fiyat: 280.000 TL (Acil Satılık)</div>
-            </td>
-        </tr>
-    </table>
-
-    <div class="footer">
-        <p>© 2011 Hasan Otomotiv Ltd. Şti. - Tüm Hakları Saklıdır.</p>
-        <p>Web Tasarım: Yeğenim Bilişim</p>
+    <div class="ilan-karti">
+        <div class="ilan-baslik">DOKTORDAN TEMİZ RENAULT TOROS</div>
+        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1000&auto=format&fit=crop" class="ilan-resim" alt="Araba">
+        
+        <div class="ilan-detay">
+            <strong>Araç Özellikleri:</strong>
+            <ul>
+                <li><strong>Model:</strong> 1994 Renault 12 Toros</li>
+                <li><strong>Durum:</strong> Dağ bayır dinlemez, tank gibi.</li>
+                <li><strong>Muayene:</strong> 1 ay önce yapıldı, kusursuz geçti.</li>
+                <li><strong>Açıklama:</strong> Sadece hafta sonları bağa gitmek için kullanıldı.</li>
+            </ul>
+        </div>
+        
+        <div class="fiyat">295.000 TL</div>
+        <a href="#" class="iletisim-btn">İLAN DETAYINA GİT</a>
     </div>
+</div>
+
+<footer>
+    <p>Hasan Otomotiv Galericiler Sitesi No: 45 / ISTANBUL</p>
+    <p>Bu site Yeğenim Bilişim tarafından "Hızlı Web" paketiyle yapılmıştır.</p>
+</footer>
 
 </body>
 </html>
