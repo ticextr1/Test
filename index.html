@@ -1,274 +1,178 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="tr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUXURY MOTORS | Elite Automotive Experience</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <title>ViraWeb | Luxury Automotive Elite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C5A059',
+                        dark: '#050505',
+                        card: '#121212',
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary-gold: #c5a059;
-            --bg-dark: #0a0a0a;
-            --card-bg: #161616;
-            --text-gray: #a0a0a0;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg-dark);
-            color: white;
-            font-family: 'Inter', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        /* Navigasyon */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 8%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 84%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-        }
-
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 24px;
-            letter-spacing: 2px;
-            color: var(--primary-gold);
-            text-transform: uppercase;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 13px;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            text-transform: uppercase;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-gold);
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 90vh;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
-                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 80px;
-        }
-
-        .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 64px;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            color: var(--primary-gold);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            font-size: 14px;
-        }
-
-        /* Envanter Grid */
-        .inventory {
-            padding: 100px 8%;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 42px;
-            margin-bottom: 10px;
-        }
-
-        .section-title div {
-            width: 50px;
-            height: 2px;
-            background: var(--primary-gold);
-            margin: 0 auto;
-        }
-
-        .car-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
-        }
-
-        .car-card {
-            background: var(--card-bg);
-            border-radius: 0px;
-            overflow: hidden;
-            transition: transform 0.4s ease;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .car-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-        }
-
-        .car-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            filter: grayscale(30%);
-            transition: filter 0.3s;
-        }
-
-        .car-card:hover .car-image {
-            filter: grayscale(0%);
-        }
-
-        .car-info {
-            padding: 30px;
-        }
-
-        .car-info h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .car-specs {
-            display: flex;
-            gap: 20px;
-            color: var(--text-gray);
-            font-size: 13px;
-            margin-bottom: 25px;
-        }
-
-        .price-tag {
-            font-size: 24px;
-            color: var(--primary-gold);
-            font-weight: 700;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .btn-view {
-            padding: 12px 25px;
-            border: 1px solid var(--primary-gold);
-            background: transparent;
-            color: var(--primary-gold);
-            text-decoration: none;
-            font-size: 12px;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
-
-        .btn-view:hover {
-            background: var(--primary-gold);
-            color: black;
-        }
-
-        footer {
-            padding: 60px 8%;
-            background: #050505;
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            color: var(--text-gray);
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
+        .glass { background: rgba(18, 18, 18, 0.8); backdrop-filter: blur(12px); }
+        .gold-gradient { background: linear-gradient(45deg, #C5A059, #F9E2AF, #C5A059); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hover-zoom img { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .hover-zoom:hover img { transform: scale(1.1); }
     </style>
 </head>
-<body>
+<body class="bg-dark text-white font-sans selection:bg-gold selection:text-black overflow-x-hidden">
 
-    <nav>
-        <div class="logo">LUXURY MOTORS</div>
-        <div class="nav-links">
-            <a href="#">Inventory</a>
-            <a href="#">Collections</a>
-            <a href="#">Heritage</a>
-            <a href="#">Concierge</a>
+    <nav class="fixed w-full z-50 py-6 px-10 glass border-b border-white/5 flex justify-between items-center">
+        <div class="text-2xl font-serif font-bold tracking-widest text-gold uppercase">ViraWeb <span class="text-white font-sans text-xs tracking-normal opacity-50 block -mt-1">Luxury Motors</span></div>
+        <div class="hidden md:flex gap-10 text-xs tracking-widest uppercase font-semibold">
+            <a href="#hero" class="hover:text-gold transition">Ana Sayfa</a>
+            <a href="#envanter" class="hover:text-gold transition">Koleksiyon</a>
+            <a href="#" class="hover:text-gold transition">ViraWeb Farkı</a>
+            <a href="#" class="hover:text-gold transition">İletişim</a>
         </div>
+        <button class="border border-gold text-gold px-6 py-2 text-xs font-bold tracking-widest hover:bg-gold hover:text-black transition duration-500">RANDEVU AL</button>
     </nav>
 
-    <section class="hero">
-        <p>Defining the Art of Driving</p>
-        <h1>Unrivaled Excellence</h1>
-        <a href="#collection" class="btn-view" style="margin-top: 30px;">DISCOVER COLLECTION</a>
-    </section>
-
-    <section class="inventory" id="collection">
-        <div class="section-title">
-            <h2>Our Inventory</h2>
-            <div></div>
+    <section id="hero" class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=100&w=2000" class="w-full h-full object-cover opacity-60" alt="Hero Porsche">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-dark/50 to-dark"></div>
         </div>
-
-        <div class="car-grid">
-            <div class="car-card">
-                <img src="https://images.unsplash.com/photo-1526726538690-5cbf22997129?auto=format&fit=crop&q=80&w=800" class="car-image" alt="Luxury Car">
-                <div class="car-info">
-                    <h3>Porsche 911 GT3</h3>
-                    <div class="car-specs">
-                        <span>2024</span> | <span>0 KM</span> | <span>PDK Transmission</span>
-                    </div>
-                    <div class="price-tag">
-                        €345,000
-                        <a href="#" class="btn-view">INQUIRE</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="car-card">
-                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=800" class="car-image" alt="Luxury Car">
-                <div class="car-info">
-                    <h3>BMW M8 Competition</h3>
-                    <div class="car-specs">
-                        <span>2023</span> | <span>1,200 KM</span> | <span>V8 Twin-Turbo</span>
-                    </div>
-                    <div class="price-tag">
-                        €210,000
-                        <a href="#" class="btn-view">INQUIRE</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="car-card">
-                <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=800" class="car-image" alt="Luxury Car">
-                <div class="car-info">
-                    <h3>Aston Martin Vantage</h3>
-                    <div class="car-specs">
-                        <span>2024</span> | <span>0 KM</span> | <span>Heritage Edition</span>
-                    </div>
-                    <div class="price-tag">
-                        €285,000
-                        <a href="#" class="btn-view">INQUIRE</a>
-                    </div>
-                </div>
+        
+        <div class="relative z-10 text-center px-4" data-aos="fade-up" data-aos-duration="1500">
+            <h2 class="uppercase tracking-[0.5em] text-gold text-sm mb-4 font-bold">Prestijin Yeni Tanımı</h2>
+            <h1 class="font-serif text-6xl md:text-8xl mb-8 leading-tight">ViraWeb Eli Değdi,<br><span class="italic opacity-80">Standartlar Değişti.</span></h1>
+            <p class="max-w-xl mx-auto text-gray-400 text-lg mb-10 leading-relaxed font-light">Sıradan otomobil sitelerini unutun. ViraWeb ile her pikselde lüksü, her tıklamada hızı ve kusursuzluğu yaşayın.</p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <a href="#envanter" class="bg-gold text-black px-10 py-4 font-bold tracking-widest hover:bg-white transition duration-500">KOLEKSİYONU KEŞFET</a>
+                <a href="#" class="border border-white/20 px-10 py-4 font-bold tracking-widest hover:bg-white hover:text-black transition duration-500">BİZE ULAŞIN</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <p>&copy; 2026 LUXURY MOTORS GLOBAL. ALL RIGHTS RESERVED.</p>
-        <p style="margin-top: 10px; font-style: italic;">Designed by Your Elite Agency</p>
+    <section class="py-20 border-y border-white/5 bg-black/50">
+        <div class="max-w-7xl mx-auto px-10 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+            <div data-aos="fade-up" data-aos-delay="100">
+                <div class="text-4xl font-serif text-gold mb-2">250+</div>
+                <div class="text-xs tracking-widest text-gray-500 uppercase">Premium Araç</div>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <div class="text-4xl font-serif text-gold mb-2">15k</div>
+                <div class="text-xs tracking-widest text-gray-500 uppercase">Mutlu Müşteri</div>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="300">
+                <div class="text-4xl font-serif text-gold mb-2">100%</div>
+                <div class="text-xs tracking-widest text-gray-500 uppercase">ViraWeb Güvencesi</div>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="400">
+                <div class="text-4xl font-serif text-gold mb-2">24/7</div>
+                <div class="text-xs tracking-widest text-gray-500 uppercase">VIP Destek</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="envanter" class="py-32 px-10 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div data-aos="fade-right">
+                <h3 class="text-gold font-bold tracking-widest mb-4 uppercase text-sm">Seçkin Envanterimiz</h3>
+                <h2 class="text-5xl font-serif">Sadece En İyiler İçin.</h2>
+            </div>
+            <p class="text-gray-500 max-w-md text-sm leading-relaxed" data-aos="fade-left">
+                ViraWeb, otomobil dünyasının zirvesindeki modelleri en şık dijital arayüzle sunar. Tasarımımızdaki her detay, araçlarımızın mühendisliği kadar hassastır.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div class="group hover-zoom bg-card border border-white/5" data-aos="fade-up" data-aos-delay="100">
+                <div class="overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="Porsche 911">
+                </div>
+                <div class="p-8">
+                    <span class="text-gold text-[10px] tracking-[0.3em] font-bold uppercase">Supercar</span>
+                    <h4 class="text-2xl font-serif my-3">Porsche 911 GT3 RS</h4>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-6 border-b border-white/5 pb-4">
+                        <span>2024</span>
+                        <span>0 KM</span>
+                        <span>520 HP</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold font-serif italic text-gold">€450.000</span>
+                        <a href="#" class="text-xs font-bold tracking-widest group-hover:text-gold transition">DETAYI GÖR →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group hover-zoom bg-card border border-white/5" data-aos="fade-up" data-aos-delay="200">
+                <div class="overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="Lamborghini">
+                </div>
+                <div class="p-8">
+                    <span class="text-gold text-[10px] tracking-[0.3em] font-bold uppercase">Exotic</span>
+                    <h4 class="text-2xl font-serif my-3">Lamborghini Huracán</h4>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-6 border-b border-white/5 pb-4">
+                        <span>2023</span>
+                        <span>1.200 KM</span>
+                        <span>640 HP</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold font-serif italic text-gold">€395.000</span>
+                        <a href="#" class="text-xs font-bold tracking-widest group-hover:text-gold transition">DETAYI GÖR →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group hover-zoom bg-card border border-white/5" data-aos="fade-up" data-aos-delay="300">
+                <div class="overflow-hidden h-64">
+                    <img src="https://images.unsplash.com/photo-1592193666082-c56093920752?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover" alt="Ferrari">
+                </div>
+                <div class="p-8">
+                    <span class="text-gold text-[10px] tracking-[0.3em] font-bold uppercase">Masterpiece</span>
+                    <h4 class="text-2xl font-serif my-3">Ferrari F8 Tributo</h4>
+                    <div class="flex justify-between items-center text-sm text-gray-500 mb-6 border-b border-white/5 pb-4">
+                        <span>2024</span>
+                        <span>0 KM</span>
+                        <span>710 HP</span>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="text-xl font-bold font-serif italic text-gold">€520.000</span>
+                        <a href="#" class="text-xs font-bold tracking-widest group-hover:text-gold transition">DETAYI GÖR →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 border-t border-white/5 text-center">
+        <div class="max-w-4xl mx-auto px-10">
+            <h2 class="font-serif text-4xl mb-6">İşletmenizi ViraWeb İle Zirveye Taşıyın.</h2>
+            <p class="text-gray-500 mb-10">Hasan Otomotiv gibi yüzlerce marka, ViraWeb'in profesyonel dokunuşuyla dijital dünyada devleşti. Sıra sizde.</p>
+            <div class="text-xs tracking-[0.4em] text-gold font-bold uppercase mb-4">Powered by ViraWeb Agency 2026</div>
+            <div class="flex justify-center gap-6 opacity-30 text-xs">
+                <a href="#">INSTAGRAM</a>
+                <a href="#">BEHANCE</a>
+                <a href="#">LINKEDIN</a>
+            </div>
+        </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-in-out',
+        });
+    </script>
 </body>
 </html>
