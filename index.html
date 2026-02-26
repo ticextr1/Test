@@ -2,158 +2,273 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <title>HASAN OTOMOTİV - ARABANIN ADRESİ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXURY MOTORS | Elite Automotive Experience</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-gold: #c5a059;
+            --bg-dark: #0a0a0a;
+            --card-bg: #161616;
+            --text-gray: #a0a0a0;
+        }
+
         body {
-            font-family: "Arial", sans-serif;
-            background-color: #e6e6e6; /* Eski tip gri arka plan */
             margin: 0;
             padding: 0;
-        }
-        header {
-            background-color: #003366; /* Koyu lacivert, eski kurumsal renk */
+            background-color: var(--bg-dark);
             color: white;
-            padding: 30px;
-            text-align: center;
-            border-bottom: 5px solid #ff0000;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
         }
-        .nav {
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
+
+        /* Navigasyon */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 84%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
         }
-        .nav a {
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            letter-spacing: 2px;
+            color: var(--primary-gold);
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
             color: white;
             text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
+            margin-left: 30px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            text-transform: uppercase;
         }
-        /* İlanları büyüttüğümüz ana konteyner */
-        .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            border: 2px solid #ccc;
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
         }
-        .ilan-karti {
-            border: 4px double #333; /* Eski usul çerçeve */
-            margin-bottom: 40px;
-            padding: 20px;
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000');
+            background-size: cover;
+            background-position: center;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: var(--primary-gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        /* Envanter Grid */
+        .inventory {
+            padding: 100px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .section-title div {
+            width: 50px;
+            height: 2px;
+            background: var(--primary-gold);
+            margin: 0 auto;
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .car-card {
+            background: var(--card-bg);
+            border-radius: 0px;
+            overflow: hidden;
+            transition: transform 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-gold);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            filter: grayscale(30%);
+            transition: filter 0.3s;
+        }
+
+        .car-card:hover .car-image {
+            filter: grayscale(0%);
+        }
+
+        .car-info {
+            padding: 30px;
+        }
+
+        .car-info h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .car-specs {
+            display: flex;
+            gap: 20px;
+            color: var(--text-gray);
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .price-tag {
+            font-size: 24px;
+            color: var(--primary-gold);
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
         }
-        .ilan-baslik {
-            background-color: #ffff00; /* Dikkat çekici sarı başlık */
-            width: 100%;
-            text-align: center;
-            padding: 10px 0;
-            font-size: 28px;
-            font-weight: bold;
-            color: #ff0000;
-            margin-bottom: 20px;
-        }
-        /* Resimleri burada devasa yapıyoruz */
-        .ilan-resim {
-            width: 100%;
-            max-width: 700px; /* Baya büyük görünecek */
-            height: auto;
-            border: 5px solid #000;
-            margin-bottom: 20px;
-        }
-        .ilan-detay {
-            width: 100%;
-            font-size: 20px;
-            line-height: 1.6;
-            text-align: left;
-            border-top: 1px dashed #000;
-            padding-top: 10px;
-        }
-        .fiyat {
-            font-size: 40px;
-            color: #cc0000;
-            font-weight: bold;
-            text-align: center;
-            margin: 20px 0;
-            background-color: #f9f9f9;
-            padding: 10px;
-        }
-        .iletisim-btn {
-            background-color: #008000;
-            color: white;
-            padding: 15px 40px;
-            font-size: 22px;
+
+        .btn-view {
+            padding: 12px 25px;
+            border: 1px solid var(--primary-gold);
+            background: transparent;
+            color: var(--primary-gold);
             text-decoration: none;
-            font-weight: bold;
-            border-radius: 10px;
-            display: inline-block;
+            font-size: 12px;
+            letter-spacing: 1px;
+            transition: all 0.3s;
         }
+
+        .btn-view:hover {
+            background: var(--primary-gold);
+            color: black;
+        }
+
         footer {
+            padding: 60px 8%;
+            background: #050505;
             text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            color: #666;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--text-gray);
+            font-size: 12px;
+            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>H A S A N &nbsp; O T O M O T İ V</h1>
-    <p>Dürüstlüğün Tek Adresi - 20 Yıllık Tecrübe</p>
-</header>
-
-<div class="nav">
-    <a href="#">ANASAYFA</a> | <a href="#">ARAÇLARIMIZ</a> | <a href="#">EKSPERTİZ</a> | <a href="#">İLETİŞİM</a>
-</div>
-
-<div class="container">
-    <h2 style="text-align: center;">--- GÜNCEL İLANLARIMIZ ---</h2>
-
-    <div class="ilan-karti">
-        <div class="ilan-baslik">ACİL SATILIK - DOĞAN SLX - EMSALSİZ!</div>
-        <img src="https://images.unsplash.com/photo-1619767886558-efdc259cde1a?q=80&w=1000&auto=format&fit=crop" class="ilan-resim" alt="Araba">
-        
-        <div class="ilan-detay">
-            <strong>Araç Özellikleri:</strong>
-            <ul>
-                <li><strong>Model:</strong> 1998 Tofaş Doğan SLX</li>
-                <li><strong>Kilometre:</strong> 185.000 (Orijinal değil ama motor yeni)</li>
-                <li><strong>Boya Durumu:</strong> Bel altı temizlik boyası var, değişen sorma.</li>
-                <li><strong>Ekstralar:</strong> CMS 40 Jant, Pioneer Tesisat, Deli Mavi Xenon.</li>
-            </ul>
+    <nav>
+        <div class="logo">LUXURY MOTORS</div>
+        <div class="nav-links">
+            <a href="#">Inventory</a>
+            <a href="#">Collections</a>
+            <a href="#">Heritage</a>
+            <a href="#">Concierge</a>
         </div>
-        
-        <div class="fiyat">385.000 TL</div>
-        <a href="tel:05550000000" class="iletisim-btn">HASAN ABİYİ ARA</a>
-    </div>
+    </nav>
 
-    <div class="ilan-karti">
-        <div class="ilan-baslik">DOKTORDAN TEMİZ RENAULT TOROS</div>
-        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=1000&auto=format&fit=crop" class="ilan-resim" alt="Araba">
-        
-        <div class="ilan-detay">
-            <strong>Araç Özellikleri:</strong>
-            <ul>
-                <li><strong>Model:</strong> 1994 Renault 12 Toros</li>
-                <li><strong>Durum:</strong> Dağ bayır dinlemez, tank gibi.</li>
-                <li><strong>Muayene:</strong> 1 ay önce yapıldı, kusursuz geçti.</li>
-                <li><strong>Açıklama:</strong> Sadece hafta sonları bağa gitmek için kullanıldı.</li>
-            </ul>
+    <section class="hero">
+        <p>Defining the Art of Driving</p>
+        <h1>Unrivaled Excellence</h1>
+        <a href="#collection" class="btn-view" style="margin-top: 30px;">DISCOVER COLLECTION</a>
+    </section>
+
+    <section class="inventory" id="collection">
+        <div class="section-title">
+            <h2>Our Inventory</h2>
+            <div></div>
         </div>
-        
-        <div class="fiyat">295.000 TL</div>
-        <a href="#" class="iletisim-btn">İLAN DETAYINA GİT</a>
-    </div>
-</div>
 
-<footer>
-    <p>Hasan Otomotiv Galericiler Sitesi No: 45 / ISTANBUL</p>
-    <p>Bu site Yeğenim Bilişim tarafından "Hızlı Web" paketiyle yapılmıştır.</p>
-</footer>
+        <div class="car-grid">
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1526726538690-5cbf22997129?auto=format&fit=crop&q=80&w=800" class="car-image" alt="Luxury Car">
+                <div class="car-info">
+                    <h3>Porsche 911 GT3</h3>
+                    <div class="car-specs">
+                        <span>2024</span> | <span>0 KM</span> | <span>PDK Transmission</span>
+                    </div>
+                    <div class="price-tag">
+                        €345,000
+                        <a href="#" class="btn-view">INQUIRE</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&q=80&w=800" class="car-image" alt="Luxury Car">
+                <div class="car-info">
+                    <h3>BMW M8 Competition</h3>
+                    <div class="car-specs">
+                        <span>2023</span> | <span>1,200 KM</span> | <span>V8 Twin-Turbo</span>
+                    </div>
+                    <div class="price-tag">
+                        €210,000
+                        <a href="#" class="btn-view">INQUIRE</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&q=80&w=800" class="car-image" alt="Luxury Car">
+                <div class="car-info">
+                    <h3>Aston Martin Vantage</h3>
+                    <div class="car-specs">
+                        <span>2024</span> | <span>0 KM</span> | <span>Heritage Edition</span>
+                    </div>
+                    <div class="price-tag">
+                        €285,000
+                        <a href="#" class="btn-view">INQUIRE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 LUXURY MOTORS GLOBAL. ALL RIGHTS RESERVED.</p>
+        <p style="margin-top: 10px; font-style: italic;">Designed by Your Elite Agency</p>
+    </footer>
 
 </body>
 </html>
