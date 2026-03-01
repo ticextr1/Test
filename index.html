@@ -1,253 +1,537 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonsuz Aşkım</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #fdf2f8; overflow-x: hidden; scroll-behavior: smooth; }
-        .font-dancing { font-family: 'Dancing Script', cursive; }
-        
-        /* Kalp Yağmuru Animasyonu */
-        @keyframes float {
-            0% { transform: translateY(100vh) scale(0); opacity: 1; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
-        }
-        .heart-float {
-            position: fixed;
-            color: #ec4899;
-            animation: float 5s linear infinite;
-            z-index: -1;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bizim Hikayemiz 💘</title>
 
-        /* Zarf Animasyonu */
-        .envelope-container { perspective: 1000px; }
-        .letter { transition: transform 0.8s, opacity 0.8s; opacity: 0; transform: translateY(50px); height: 0; overflow: hidden; }
-        .envelope-container.open .letter { opacity: 1; transform: translateY(0); height: auto; padding: 2rem; margin-top: -20px; border-radius: 0 0 1rem 1rem; }
-        .envelope-container.open .flap { transform: rotateX(180deg); transform-origin: top; transition: 0.5s; }
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        /* Daktilo Efekti İçin CSS */
-        .typewriter h1 {
-            display: inline-block;
-            overflow: hidden; /* İçeriği gizle */
-            border-right: .15em solid #ec4899; /* Daktilo imleci */
-            white-space: nowrap; /* Metni tek satırda tut */
-            margin: 0 auto; /* Metni merkezle */
-            letter-spacing: .15em;
-            animation: 
-                typing 3.5s steps(40, end),
-                blink-caret .75s step-end infinite;
-        }
+  <!-- Google Font (romantik bir font) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Nunito:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
+  <style>
+    :root {
+      --glass: rgba(255,255,255,.12);
+      --glass2: rgba(255,255,255,.18);
+    }
+    body {
+      font-family: "Nunito", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      overflow-x: hidden;
+    }
+    .scriptFont { font-family: "Great Vibes", cursive; }
 
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #ec4899; }
-        }
-    </style>
+    /* Arka plan parıltı animasyonu */
+    .glow {
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,105,180,.28), transparent 40%),
+                  radial-gradient(circle at 70% 40%, rgba(255,182,193,.24), transparent 45%),
+                  radial-gradient(circle at 40% 75%, rgba(255,255,255,.16), transparent 35%);
+      filter: blur(30px);
+      animation: drift 12s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes drift {
+      0%   { transform: translate3d(-2%, -1%, 0) scale(1.02); }
+      50%  { transform: translate3d( 2%,  1.5%, 0) scale(1.05); }
+      100% { transform: translate3d(-2%, -1%, 0) scale(1.02); }
+    }
+
+    /* Cam efekt */
+    .glass {
+      background: linear-gradient(180deg, var(--glass), var(--glass2));
+      border: 1px solid rgba(255,255,255,.22);
+      box-shadow: 0 20px 60px rgba(0,0,0,.18);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    /* Kart giriş animasyonu */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: all .7s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Kalp canvas üstte */
+    #hearts {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    /* Galeri hover */
+    .imgCard {
+      transform: translateZ(0);
+      transition: transform .35s ease, filter .35s ease;
+    }
+    .imgCard:hover {
+      transform: translateY(-6px) scale(1.01);
+      filter: saturate(1.1) contrast(1.05);
+    }
+
+    /* Mini buton parlama */
+    .shine {
+      position: relative;
+      overflow: hidden;
+    }
+    .shine::after {
+      content: "";
+      position: absolute;
+      top: -120%;
+      left: -40%;
+      width: 40%;
+      height: 260%;
+      transform: rotate(25deg);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
+      animation: sweep 3.6s ease-in-out infinite;
+    }
+    @keyframes sweep {
+      0% { left: -50%; opacity: 0; }
+      25% { opacity: .55; }
+      50% { left: 120%; opacity: 0; }
+      100% { left: 120%; opacity: 0; }
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 50;
+      opacity: 0;
+      transition: opacity .25s ease, transform .25s ease;
+      pointer-events: none;
+    }
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-6px);
+    }
+  </style>
 </head>
-<body class="text-gray-800 relative pb-10">
 
-    <div id="heart-container"></div>
+<body class="min-h-screen text-white">
+  <!-- Arka plan -->
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-br from-rose-600 via-fuchsia-700 to-indigo-900"></div>
+    <div class="glow"></div>
+    <div class="absolute inset-0 opacity-[0.14]"
+         style="background-image: radial-gradient(rgba(255,255,255,.22) 1px, transparent 1px);
+                background-size: 22px 22px;"></div>
+  </div>
 
-    <header class="h-screen flex flex-col items-center justify-center text-center p-5 relative bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
-        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+  <!-- Kalpler Canvas -->
+  <canvas id="hearts"></canvas>
 
-        <div class="relative z-10 bg-white/20 backdrop-blur-lg p-12 rounded-3xl shadow-2xl border border-white/20 max-w-4xl transform transition hover:scale-105 duration-500 typewriter">
-            <h1 class="font-dancing text-6xl md:text-8xl text-pink-400 mb-6 drop-shadow-lg">Aşkım... Sen Her Şeyimsin</h1>
-            <p id="dynamic-love-quote" class="text-2xl md:text-3xl text-white mb-10 font-light tracking-wide drop-shadow"></p>
-            <a href="#tarih" class="bg-pink-500 hover:bg-pink-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300">Tarihimize Git <i class="fa-solid fa-arrow-down ml-2"></i></a>
+  <!-- Üst -->
+  <header class="max-w-5xl mx-auto px-5 pt-10 pb-6 relative z-10">
+    <div class="glass rounded-3xl p-6 sm:p-8 reveal">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div>
+          <div class="scriptFont text-5xl sm:text-6xl leading-tight drop-shadow">
+            <span id="titleA">Sen</span> & <span id="titleB">Ben</span>
+          </div>
+          <p class="mt-2 text-white/85 text-base sm:text-lg">
+            Küçük bir sayfa… ama kalbimde kocaman bir yerin var 💗
+          </p>
         </div>
-    </header>
 
-    <section id="tarih" class="min-h-screen flex flex-col items-center justify-center p-10 bg-pink-50">
-        <div class="bg-white p-12 rounded-3xl shadow-2xl border border-pink-100 max-w-4xl text-center">
-            <h2 class="font-dancing text-5xl md:text-7xl text-pink-600 mb-8">Birlikteyiz...</h2>
-            <p class="text-xl md:text-2xl text-gray-600 mb-12">Hayatımın en güzel rüyasısın.</p>
-            
-            <div class="bg-pink-100 p-8 rounded-2xl shadow-inner inline-block w-full">
-                <div id="timer" class="flex gap-6 justify-center text-4xl md:text-6xl font-bold text-pink-600">
-                    <div class="flex flex-col items-center"><span id="days">00</span><span class="text-sm font-normal text-pink-400 mt-1">Gün</span></div>
-                    <span>:</span>
-                    <div class="flex flex-col items-center"><span id="hours">00</span><span class="text-sm font-normal text-pink-400 mt-1">Saat</span></div>
-                    <span>:</span>
-                    <div class="flex flex-col items-center"><span id="minutes">00</span><span class="text-sm font-normal text-pink-400 mt-1">Dakika</span></div>
-                    <span>:</span>
-                    <div class="flex flex-col items-center"><span id="seconds">00</span><span class="text-sm font-normal text-pink-400 mt-1">Saniye</span></div>
-                </div>
-            </div>
-            
-            <div class="mt-12 bg-gray-900 text-white p-5 rounded-xl shadow-lg w-full flex items-center justify-between border border-gray-700">
-                <div class="flex items-center gap-4">
-                    <i class="fa-solid fa-music text-pink-500 text-2xl"></i>
-                    <div>
-                        <h4 class="font-bold text-sm">Bizim Şarkımız</h4>
-                        <p class="text-xs text-gray-400">Canım Sevgilim İçin</p>
-                    </div>
-                </div>
-                <div class="flex items-center gap-4 text-gray-400">
-                    <i class="fa-solid fa-backward hover:text-white cursor-pointer transition"></i>
-                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center cursor-pointer hover:scale-105 transition">
-                        <i class="fa-solid fa-play text-black text-sm"></i>
-                    </div>
-                    <i class="fa-solid fa-forward hover:text-white cursor-pointer transition"></i>
-                </div>
-            </div>
+        <div class="flex flex-col gap-2 items-start sm:items-end">
+          <button id="btnMusic" class="shine glass rounded-2xl px-4 py-2 text-sm font-semibold hover:scale-[1.02] active:scale-[0.98] transition">
+            🎵 Müziği Başlat
+          </button>
+          <button id="btnSurprise" class="glass rounded-2xl px-4 py-2 text-sm font-semibold hover:scale-[1.02] active:scale-[0.98] transition">
+            ✨ Sürpriz Yap
+          </button>
         </div>
-    </section>
+      </div>
 
-    <section class="max-w-7xl mx-auto px-5 py-24">
-        <h2 class="font-dancing text-6xl text-center text-pink-500 mb-16 drop-shadow-lg">Aşkımızın Kareleri</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            <div class="overflow-hidden rounded-3xl shadow-lg group transform transition duration-500 hover:scale-105 hover:rotate-2">
-                <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aşk 1" class="w-full h-80 object-cover">
-            </div>
-            <div class="overflow-hidden rounded-3xl shadow-lg group transform transition duration-500 hover:scale-105 hover:rotate-2">
-                <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aşk 2" class="w-full h-80 object-cover">
-            </div>
-            <div class="overflow-hidden rounded-3xl shadow-lg group transform transition duration-500 hover:scale-105 hover:rotate-2">
-                <img src="https://images.unsplash.com/photo-1474552226712-ac0f0961a954?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aşk 3" class="w-full h-80 object-cover">
-            </div>
-            <div class="overflow-hidden rounded-3xl shadow-lg group transform transition duration-500 hover:scale-105 hover:rotate-2">
-                <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aşk 4" class="w-full h-80 object-cover">
-            </div>
-            <div class="overflow-hidden rounded-3xl shadow-lg group transform transition duration-500 hover:scale-105 hover:rotate-2">
-                <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aşk 5" class="w-full h-80 object-cover">
-            </div>
-            <div class="overflow-hidden rounded-3xl shadow-lg group transform transition duration-500 hover:scale-105 hover:rotate-2">
-                <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aşk 6" class="w-full h-80 object-cover">
-            </div>
-            <div class="overflow-hidden rounded-3xl shadow-lg group transform transition duration-500 hover:scale-105 hover:rotate-2">
-                <img src="https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aşk 7" class="w-full h-80 object-cover">
-            </div>
-            <div class="overflow-hidden rounded-3xl shadow-lg group transform transition duration-500 hover:scale-105 hover:rotate-2">
-                <img src="https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Aşk 8" class="w-full h-80 object-cover">
-            </div>
+      <!-- Ayarlar -->
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div class="glass rounded-2xl p-4">
+          <label class="text-xs text-white/75">Senin Adın</label>
+          <input id="inpA" class="mt-2 w-full bg-white/10 rounded-xl px-3 py-2 outline-none focus:ring-2 ring-white/30"
+                 placeholder="Örn: Ece" value="Sen"/>
         </div>
-    </section>
-
-    <section class="max-w-5xl mx-auto px-5 py-24 text-center bg-white rounded-3xl shadow-xl my-10 border border-pink-100">
-        <h2 class="font-dancing text-6xl text-pink-500 mb-12 drop-shadow-lg">Sana Bir Notum Var...</h2>
-        <div class="envelope-container cursor-pointer mx-auto w-full max-w-3xl" id="envelope">
-            <div class="bg-pink-400 text-white rounded-t-xl p-10 shadow-xl relative z-10 flap flex flex-col items-center justify-center h-48 border border-pink-300">
-                <i class="fa-solid fa-envelope-open-text text-6xl animate-pulse text-red-500"></i>
-                <p class="mt-5 font-semibold text-xl">Açmak için bana tıkla canım</p>
-            </div>
-            <div class="letter bg-pink-50 text-left shadow-2xl relative z-0 border border-pink-100">
-                <h3 class="font-dancing text-5xl text-pink-600 mb-8 border-b-2 border-pink-200 pb-5">Canımın İçi,</h3>
-                <p class="text-gray-700 leading-relaxed mb-6 text-xl">
-                    Hayatıma girdiğin o ilk günden beri dünyamın renkleri değişti. Eskiden sıradan gelen her şey, seninle bir anlam kazandı. Sesini duyduğumda içimde kelebekler uçuşuyor, gözlerine baktığımda ise kendimi dünyanın en şanslı insanı hissediyorum. Sen benim güldüğümde en parlak güneşim, karanlıkta sığındığım en güvenli limanımsın.
-                </p>
-                <p class="text-gray-700 leading-relaxed mb-6 text-xl">
-                    Bazen seni anlatacak kelimeleri bulamıyorum çünkü hiçbir alfabe sana olan hislerimi tarif edecek kadar zengin değil. Birlikte geçirdiğimiz her an, zihnime kazınan eşsiz bir tablo gibi. Seninle gülmek, seninle susmak, sadece yanında nefes almak bile bana yetiyor.
-                </p>
-                <p class="text-gray-700 leading-relaxed text-xl">
-                    Ellerini hiç bırakmak istemiyorum. Geleceğe dair kurduğum her hayalin başrolünde sen varsın. İyi ki varsın, iyi ki benimsin. Seni bu dünyadaki her şeyden, herkesten çok seviyorum... Sonsuza dek.
-                </p>
-                <div class="mt-10 text-right font-dancing text-4xl text-pink-500 signature">
-                    - Seni Çok Seven Sevgilin
-                </div>
-            </div>
+        <div class="glass rounded-2xl p-4">
+          <label class="text-xs text-white/75">Sevgilinin Adı</label>
+          <input id="inpB" class="mt-2 w-full bg-white/10 rounded-xl px-3 py-2 outline-none focus:ring-2 ring-white/30"
+                 placeholder="Örn: Arda" value="Ben"/>
         </div>
-    </section>
+        <div class="glass rounded-2xl p-4">
+          <label class="text-xs text-white/75">Birlikte Olduğunuz Tarih</label>
+          <input id="inpDate" type="date" class="mt-2 w-full bg-white/10 rounded-xl px-3 py-2 outline-none focus:ring-2 ring-white/30"/>
+          <p class="text-[11px] text-white/65 mt-2">Tarihi seçince sayaç otomatik güncellenir.</p>
+        </div>
+      </div>
+    </div>
+  </header>
 
-    <script>
-        // --- 1. SAYAÇ MANTIĞI ---
-        const startDate = new Date(2022, 5, 15, 14, 0, 0).getTime(); // Örnek tarih: 15 Haziran 2022
+  <!-- Sayaç -->
+  <section class="max-w-5xl mx-auto px-5 pb-6 relative z-10">
+    <div class="glass rounded-3xl p-6 sm:p-8 reveal">
+      <div class="flex items-end justify-between gap-4 flex-wrap">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-extrabold">Şu günden beri birlikteyiz</h2>
+          <p id="dateLabel" class="text-white/80 mt-1">—</p>
+        </div>
+        <div class="text-right">
+          <div class="scriptFont text-4xl sm:text-5xl leading-none">Sonsuz gibi…</div>
+          <p class="text-white/70 text-sm">ve her gün daha güzel 💞</p>
+        </div>
+      </div>
 
-        function updateTimer() {
-            const now = new Date().getTime();
-            const difference = now - startDate;
+      <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div class="glass rounded-2xl p-4 text-center">
+          <div id="dDays" class="text-3xl sm:text-4xl font-extrabold">0</div>
+          <div class="text-white/70 text-xs mt-1">GÜN</div>
+        </div>
+        <div class="glass rounded-2xl p-4 text-center">
+          <div id="dHours" class="text-3xl sm:text-4xl font-extrabold">0</div>
+          <div class="text-white/70 text-xs mt-1">SAAT</div>
+        </div>
+        <div class="glass rounded-2xl p-4 text-center">
+          <div id="dMins" class="text-3xl sm:text-4xl font-extrabold">0</div>
+          <div class="text-white/70 text-xs mt-1">DAKİKA</div>
+        </div>
+        <div class="glass rounded-2xl p-4 text-center">
+          <div id="dSecs" class="text-3xl sm:text-4xl font-extrabold">0</div>
+          <div class="text-white/70 text-xs mt-1">SANİYE</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+  <!-- Not -->
+  <section class="max-w-5xl mx-auto px-5 pb-6 relative z-10">
+    <div class="glass rounded-3xl p-6 sm:p-8 reveal">
+      <h3 class="text-xl sm:text-2xl font-extrabold">Sana küçük bir not…</h3>
+      <p class="text-white/85 mt-3 leading-relaxed">
+        Her şey bazen karışır… ama ben bir şeyi hep net biliyorum:
+        <span class="font-bold">sen</span> iyi ki varsın.
+        Gülüşün var ya… bütün günümün havasını değiştiriyor.
+      </p>
+      <p class="text-white/85 mt-3 leading-relaxed">
+        Eğer şu an yanımda değilsen bile, bil ki
+        <span class="font-bold">kalbimin en güzel yerinde</span> yerin hazır 💘
+      </p>
+      <div class="mt-5 flex flex-wrap gap-3">
+        <button id="btnCopy" class="glass rounded-2xl px-4 py-2 text-sm font-semibold hover:scale-[1.02] active:scale-[0.98] transition">
+          📋 Notu Kopyala
+        </button>
+        <button id="btnHeartBurst" class="shine glass rounded-2xl px-4 py-2 text-sm font-semibold hover:scale-[1.02] active:scale-[0.98] transition">
+          💞 Kalpleri Coştur
+        </button>
+      </div>
+    </div>
+  </section>
 
-            document.getElementById("days").innerText = days.toString().padStart(2, '0');
-            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+  <!-- Galeri -->
+  <section class="max-w-5xl mx-auto px-5 pb-12 relative z-10">
+    <div class="glass rounded-3xl p-6 sm:p-8 reveal">
+      <div class="flex items-end justify-between gap-3 flex-wrap">
+        <div>
+          <h3 class="text-xl sm:text-2xl font-extrabold">Aşk Galerisi</h3>
+          <p class="text-white/75 mt-1 text-sm">Romantik vibes — kaydır, bak, kalbin ısınsın 💗</p>
+        </div>
+        <button id="btnShuffle" class="glass rounded-2xl px-4 py-2 text-sm font-semibold hover:scale-[1.02] active:scale-[0.98] transition">
+          🔀 Karıştır
+        </button>
+      </div>
+
+      <div id="gallery" class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </div>
+
+    <footer class="max-w-5xl mx-auto px-5 pt-10 pb-8 text-center text-white/65 text-sm">
+      <div class="scriptFont text-3xl text-white/90">Seni seviyorum…</div>
+      <div class="mt-1">Bu sayfa sadece “biz” için 💞</div>
+    </footer>
+  </section>
+
+  <!-- Toast -->
+  <div id="toast" class="glass rounded-2xl px-4 py-2 text-sm font-semibold">Kopyalandı ✅</div>
+
+  <!-- Müzik -->
+  <!-- NOT: Telifsiz / kendine ait bir mp3 ekle. Örn: music.mp3'ü aynı klasöre koyup src="music.mp3" yap. -->
+  <audio id="bgMusic" loop preload="none">
+    <!-- <source src="music.mp3" type="audio/mpeg"> -->
+  </audio>
+
+  <script>
+    // ---- Basit yardımcılar
+    const $ = (s) => document.querySelector(s);
+    const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+
+    // ---- Başlangıç tarihini default (örnek): 2025-01-01
+    const dateInput = $("#inpDate");
+    dateInput.value = "2025-01-01";
+
+    // ---- Başlık isimleri
+    const inpA = $("#inpA"), inpB = $("#inpB");
+    const titleA = $("#titleA"), titleB = $("#titleB");
+
+    function updateNames() {
+      titleA.textContent = (inpA.value || "Sen").trim();
+      titleB.textContent = (inpB.value || "Ben").trim();
+    }
+    inpA.addEventListener("input", updateNames);
+    inpB.addEventListener("input", updateNames);
+    updateNames();
+
+    // ---- Sayaç
+    const dDays = $("#dDays"), dHours = $("#dHours"), dMins = $("#dMins"), dSecs = $("#dSecs");
+    const dateLabel = $("#dateLabel");
+
+    function formatTRDate(iso) {
+      // iso: YYYY-MM-DD
+      const [y, m, d] = iso.split("-").map(Number);
+      const dt = new Date(Date.UTC(y, m - 1, d));
+      return dt.toLocaleDateString("tr-TR", { day: "2-digit", month: "long", year: "numeric" });
+    }
+
+    function tick() {
+      const iso = dateInput.value;
+      if (!iso) return;
+
+      dateLabel.textContent = `${formatTRDate(iso)} tarihinden beri 💘`;
+
+      const [y, m, d] = iso.split("-").map(Number);
+      const start = new Date(y, m - 1, d, 0, 0, 0);
+      const now = new Date();
+
+      let diff = now - start;
+      if (diff < 0) diff = 0;
+
+      const sec = Math.floor(diff / 1000);
+      const days = Math.floor(sec / 86400);
+      const hours = Math.floor((sec % 86400) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = sec % 60;
+
+      dDays.textContent = days;
+      dHours.textContent = hours;
+      dMins.textContent = mins;
+      dSecs.textContent = secs;
+    }
+
+    dateInput.addEventListener("change", tick);
+    tick();
+    setInterval(tick, 1000);
+
+    // ---- Galeri (internet resimleri: Unsplash, query ile)
+    // İstersen kendi foto linklerini buraya ekle.
+    const base = [
+      "https://images.unsplash.com/photo-1520975693412-35a22a1a84f2?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1520975869019-2b4d0d377b89?auto=format&fit=crop&w=1200&q=80"
+    ];
+
+    const captions = [
+      "Gülüşün = huzur.",
+      "Yanımda olunca her şey kolay.",
+      "Sen benim en güzel tesadüfümsün.",
+      "Kalbim sende güvenli bölgede.",
+      "Birlikteyken zaman başka akıyor.",
+      "İyi ki… hep iyi ki.",
+      "Sen + Ben = Biz.",
+      "Gözlerin en güzel şarkı.",
+      "Aşkın en tatlı hali."
+    ];
+
+    const gallery = $("#gallery");
+
+    function renderGallery(list) {
+      gallery.innerHTML = "";
+      list.forEach((url, i) => {
+        const cap = captions[i % captions.length];
+        const el = document.createElement("div");
+        el.className = "imgCard glass rounded-2xl overflow-hidden";
+        el.innerHTML = `
+          <div class="relative">
+            <img src="${url}" alt="love" class="w-full h-56 object-cover"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/0 to-black/0"></div>
+            <div class="absolute bottom-3 left-3 right-3">
+              <div class="text-white font-bold">${cap}</div>
+              <div class="text-white/70 text-xs mt-0.5">💗 küçük anlar, büyük hisler</div>
+            </div>
+          </div>
+        `;
+        gallery.appendChild(el);
+      });
+    }
+
+    renderGallery(base);
+
+    $("#btnShuffle").addEventListener("click", () => {
+      const arr = [...base].sort(() => Math.random() - 0.5);
+      renderGallery(arr);
+      toast("Karıştırıldı 🔀");
+    });
+
+    // ---- Toast
+    const toastEl = $("#toast");
+    let toastTimer = null;
+    function toast(msg) {
+      toastEl.textContent = msg;
+      toastEl.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toastEl.classList.remove("show"), 1400);
+    }
+
+    // ---- Notu kopyala
+    $("#btnCopy").addEventListener("click", async () => {
+      const text =
+`Her şey bazen karışır… ama ben bir şeyi hep net biliyorum:
+${titleA.textContent} iyi ki varsın. Gülüşün bütün günümün havasını değiştiriyor.
+Kalbimin en güzel yerinde yerin hazır 💘`;
+      try {
+        await navigator.clipboard.writeText(text);
+        toast("Kopyalandı ✅");
+      } catch {
+        toast("Kopyalanamadı 🙃");
+      }
+    });
+
+    // ---- Müzik (kendi mp3'ünü ekleyince çalışır)
+    const music = $("#bgMusic");
+    const btnMusic = $("#btnMusic");
+    let isPlaying = false;
+
+    btnMusic.addEventListener("click", async () => {
+      try {
+        if (!music.querySelector("source")) {
+          toast("MP3 ekle: music.mp3 🎵");
+          return;
         }
-
-        setInterval(updateTimer, 1000);
-        updateTimer();
-
-        // --- 2. ZARF AÇILMA MANTIĞI ---
-        const envelope = document.getElementById('envelope');
-        envelope.addEventListener('click', () => {
-            envelope.classList.toggle('open');
-        });
-
-        // --- 3. UÇUŞAN KALPLER (Arka Plan Animasyonu) ---
-        function createHeart() {
-            const heart = document.createElement('i');
-            heart.classList.add('fa-solid', 'fa-heart', 'heart-float');
-            
-            // Rastgele konum ve boyut
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
-            heart.style.opacity = Math.random() * 0.5 + 0.2;
-            heart.style.animationDuration = Math.random() * 3 + 4 + 's';
-
-            document.getElementById('heart-container').appendChild(heart);
-
-            // Animasyon bitince elementi sil
-            setTimeout(() => {
-                heart.remove();
-            }, 6000);
+        if (!isPlaying) {
+          await music.play();
+          isPlaying = true;
+          btnMusic.textContent = "⏸ Müziği Durdur";
+          toast("Müzik başladı 🎶");
+        } else {
+          music.pause();
+          isPlaying = false;
+          btnMusic.textContent = "🎵 Müziği Başlat";
+          toast("Durdu ⏸");
         }
+      } catch {
+        toast("Tarayıcı engelledi 😅");
+      }
+    });
 
-        setInterval(createHeart, 300);
+    // ---- Sürpriz: küçük konfeti + kalp patlaması
+    $("#btnSurprise").addEventListener("click", () => {
+      burst(18);
+      toast("Sürprizzz ✨");
+    });
+    $("#btnHeartBurst").addEventListener("click", () => burst(28));
 
-        // --- 4. DİNAMİK AŞK SÖZCÜKLERİ VE DAKTİLO EFEKTİ ---
-        const quotes = [
-            "Her anım seninle güzel...",
-            "Seni her şeyden çok seviyorum.",
-            "Hayatımın en güzel rüyasısın.",
-            "İyi ki varsın sevgilim.",
-            "Sonsuza dek seninle."
-        ];
-        
-        const quoteElement = document.getElementById('dynamic-love-quote');
-        let quoteIndex = 0;
-        let charIndex = 0;
-        let isTyping = true;
+    // ---- Reveal animasyonu
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add("show");
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 
-        function typeQuote() {
-            if (isTyping) {
-                if (charIndex < quotes[quoteIndex].length) {
-                    quoteElement.textContent += quotes[quoteIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(typeQuote, 100); // Yazma hızı
-                } else {
-                    isTyping = false;
-                    setTimeout(typeQuote, 2000); // Yazma sonrası bekleme
-                }
-            } else {
-                if (charIndex > 0) {
-                    quoteElement.textContent = quotes[quoteIndex].substring(0, charIndex - 1);
-                    charIndex--;
-                    setTimeout(typeQuote, 50); // Silme hızı
-                } else {
-                    isTyping = true;
-                    quoteIndex = (quoteIndex + 1) % quotes.length;
-                    setTimeout(typeQuote, 500); // Silme sonrası bekleme
-                }
-            }
-        }
+    // ---- Uçuşan kalpler canvas
+    const canvas = document.getElementById("hearts");
+    const ctx = canvas.getContext("2d");
+    let W = 0, H = 0;
 
-        // Daktilo efekti CSS animasyonuyla çakışmasın diye Javascript ile yapıyoruz. 
-        // CSS daktilo efekti sadece ana başlık için.
-        setTimeout(typeQuote, 3500); // Ana başlık bittikten sonra başla
-    </script>
+    function resize() {
+      W = canvas.width = window.innerWidth * devicePixelRatio;
+      H = canvas.height = window.innerHeight * devicePixelRatio;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    const hearts = [];
+    function rand(min, max) { return Math.random() * (max - min) + min; }
+
+    function addHeart(x = rand(0, W), y = H + rand(0, H * 0.2), big = false) {
+      hearts.push({
+        x, y,
+        vy: rand(0.6, 1.35) * devicePixelRatio * (big ? 1.2 : 1),
+        vx: rand(-0.35, 0.35) * devicePixelRatio,
+        s: rand(10, 18) * devicePixelRatio * (big ? 1.25 : 1),
+        a: rand(0.55, 0.95),
+        rot: rand(-0.6, 0.6),
+        vr: rand(-0.01, 0.01),
+      });
+    }
+
+    // başlangıç kalpleri
+    for (let i = 0; i < 26; i++) addHeart(rand(0, W), rand(0, H));
+
+    function heartPath(x, y, size, rot) {
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(rot);
+      ctx.beginPath();
+      const s = size;
+      // Kalp şekli (parametrik)
+      ctx.moveTo(0, -s * 0.25);
+      ctx.bezierCurveTo(s * 0.55, -s * 0.85, s * 1.2, -s * 0.05, 0, s * 0.9);
+      ctx.bezierCurveTo(-s * 1.2, -s * 0.05, -s * 0.55, -s * 0.85, 0, -s * 0.25);
+      ctx.closePath();
+      ctx.restore();
+    }
+
+    function loop() {
+      ctx.clearRect(0, 0, W, H);
+      for (let i = hearts.length - 1; i >= 0; i--) {
+        const h = hearts[i];
+        h.y -= h.vy;
+        h.x += h.vx;
+        h.rot += h.vr;
+
+        // gradient renk
+        const g = ctx.createLinearGradient(h.x, h.y - h.s, h.x, h.y + h.s);
+        g.addColorStop(0, `rgba(255, 255, 255, ${0.08 * h.a})`);
+        g.addColorStop(0.45, `rgba(255, 105, 180, ${0.35 * h.a})`);
+        g.addColorStop(1, `rgba(255, 20, 147, ${0.18 * h.a})`);
+
+        ctx.fillStyle = g;
+        ctx.globalAlpha = h.a;
+
+        heartPath(h.x, h.y, h.s, h.rot);
+        ctx.fill();
+
+        if (h.y < -h.s * 2) hearts.splice(i, 1);
+      }
+
+      // sürekli kalp üret
+      if (hearts.length < 42) addHeart();
+
+      requestAnimationFrame(loop);
+    }
+    loop();
+
+    // patlama efekti: hızlı bir sürü kalp ekle
+    function burst(n) {
+      for (let i = 0; i < n; i++) {
+        addHeart(rand(0, W), rand(H * 0.25, H * 0.95), true);
+      }
+    }
+  </script>
 </body>
 </html>
